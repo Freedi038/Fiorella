@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Slide>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="table-responsive pt-3">
+        @if (Model.Count() < 5)
+        {
+            <a class="btn btn-success mb-3" asp-action="Create">Create New Slide</a>
+        }
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Image
+                    </th>
+                    <th>
+                        Setting
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Slide slide in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/img/@slide.Name" style="width:200px; height:150px; border-radius:0" />
+                        </td>
+                        <td>
+                            <a class="btn btn-success" asp-action="Detail" asp-route-id="@slide.Id">
+                                Detail
+                            </a>
+                            <a class="btn btn-warning" asp-action="Update" asp-route-id="@slide.Id">
+                                Update
+                            </a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@slide.Id">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
